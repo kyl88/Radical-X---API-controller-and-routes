@@ -9,7 +9,7 @@ const app = express();
 
 //connect to MongoDB
 const dbURI ='mongodb+srv://kyle1988:Laracroft97@cluster0.of4ofmv.mongodb.net/course-app?retryWrites=true&w=majority';
-//            mongodb+srv://<username>:<password>@cluster0.of4ofmv.mongodb.net/?retryWrites=true&w=majority
+//            mongodb+srv://kyle1988:Laracroft97@cluster0.of4ofmv.mongodb.net/course-app?retryWrites=true&w=majority
 mongoose.connect(dbURI,{useNewUrlParser: true, useUnifiedTopology: true })
 .then((result)=>console.log('connect to db'))
 .catch ((err)=> console.log(err));
@@ -21,7 +21,7 @@ app.set('view engine', 'ejs');
 
 
 // listen for requests
-app.listen(8080);
+app.listen(9000);
 
 
 
@@ -123,6 +123,22 @@ app.post ('/blogs', (req, res)=>{
 
     });
     
+
+})
+
+// vanilla Javascript
+
+app.delete('/blogs/:id', (req, res)=> {
+  const id = req.params.id;
+
+  Blog.findByIdAndDelete(id)
+      .then(result => {
+        res.json({ redirect: '/blogs'})
+      })
+      .catch(err => {
+        console.log(err);
+
+      })
 
 })
 

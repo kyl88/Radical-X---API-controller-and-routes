@@ -97,6 +97,7 @@ h3{
 
 .delete:hover {
     cursor: pointer;
+    box-shadow: inset;
    
 }
 
